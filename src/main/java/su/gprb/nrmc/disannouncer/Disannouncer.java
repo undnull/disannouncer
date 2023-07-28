@@ -29,40 +29,24 @@ public final class Disannouncer extends JavaPlugin implements CommandExecutor
 
     private NamedTextColor getColor(@NotNull String value)
     {
-        switch(value.toLowerCase()) {
-            case "black":
-                return NamedTextColor.BLACK;
-            case "dark_blue":
-                return NamedTextColor.DARK_BLUE;
-            case "dark_green":
-                return NamedTextColor.DARK_GREEN;
-            case "dark_aqua":
-                return NamedTextColor.DARK_AQUA;
-            case "dark_red":
-                return NamedTextColor.DARK_RED;
-            case "dark_purple":
-                return NamedTextColor.DARK_PURPLE;
-            case "gold":
-                return NamedTextColor.GOLD;
-            case "dark_gray":
-                return NamedTextColor.DARK_GRAY;
-            case "blue":
-                return NamedTextColor.BLUE;
-            case "green":
-                return NamedTextColor.GREEN;
-            case "aqua":
-                return NamedTextColor.AQUA;
-            case "red":
-                return NamedTextColor.RED;
-            case "light_purple":
-                return NamedTextColor.LIGHT_PURPLE;
-            case "yellow":
-                return NamedTextColor.YELLOW;
-            case "white":
-                return NamedTextColor.WHITE;
-            default:
-                return NamedTextColor.GRAY;
-        }
+        return switch (value.toLowerCase()) {
+            case "black" -> NamedTextColor.BLACK;
+            case "dark_blue" -> NamedTextColor.DARK_BLUE;
+            case "dark_green" -> NamedTextColor.DARK_GREEN;
+            case "dark_aqua" -> NamedTextColor.DARK_AQUA;
+            case "dark_red" -> NamedTextColor.DARK_RED;
+            case "dark_purple" -> NamedTextColor.DARK_PURPLE;
+            case "gold" -> NamedTextColor.GOLD;
+            case "dark_gray" -> NamedTextColor.DARK_GRAY;
+            case "blue" -> NamedTextColor.BLUE;
+            case "green" -> NamedTextColor.GREEN;
+            case "aqua" -> NamedTextColor.AQUA;
+            case "red" -> NamedTextColor.RED;
+            case "light_purple" -> NamedTextColor.LIGHT_PURPLE;
+            case "yellow" -> NamedTextColor.YELLOW;
+            case "white" -> NamedTextColor.WHITE;
+            default -> NamedTextColor.GRAY;
+        };
     }
 
     private String getHeadURL(@NotNull String username)
@@ -142,11 +126,8 @@ public final class Disannouncer extends JavaPlugin implements CommandExecutor
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args)
     {
-        if(args.length > 0) {
+        if(args.length > 0)
             doBroadcast(String.join(" ", args), sender.getName(), onCommandColor);
-            return false;
-        }
-
         return true;
     }
 }
