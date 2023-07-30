@@ -17,14 +17,14 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
+import java.util.TimeZone;
 
+@SuppressWarnings("unused")
 public final class Disannouncer extends JavaPlugin implements CommandExecutor
 {
     private final HttpClient http = HttpClient.newHttpClient();
-    private SimpleDateFormat dfmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
     private String discordWebhookURL = null;
     private NamedTextColor onEnableColor = NamedTextColor.GRAY;
@@ -58,6 +58,14 @@ public final class Disannouncer extends JavaPlugin implements CommandExecutor
         return String.format("https://mc-heads.net/avatar/%s/32", username);
     }
 
+    private String getDateStringUTC()
+    {
+        final String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+        final SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return sdf.format(new Date());
+    }
+
     private void doBroadcast(@NotNull String message, @NotNull String author, NamedTextColor color)
     {
         final TextComponent text = Component.text()
@@ -72,10 +80,9 @@ public final class Disannouncer extends JavaPlugin implements CommandExecutor
             json.append("`attachments`:[],");
             json.append("`content`:null,");
             json.append("`embeds`:[{");
-            json.append("`title`:`Service Announcement`,");
-            json.append(String.format("`description`:`%s`,", message));
+            json.append(String.format("`title`:`%s`,", message));
             json.append(String.format("`color`:%d,", color.value()));
-            json.append(String.format("`timestamp`:`%s`,", dfmt.format(Date.from(Instant.now()))));
+            json.append(String.format("`timestamp`:`%s`,", getDateStringUTC()));
             json.append(String.format("`author`:{`name`:`%s`,`icon_url`:`%s`}", author, getHeadURL(author)));
             json.append("}]");
             json.append("}");
