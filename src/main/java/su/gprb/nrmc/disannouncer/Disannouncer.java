@@ -16,11 +16,15 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 public final class Disannouncer extends JavaPlugin implements CommandExecutor
 {
     private final HttpClient http = HttpClient.newHttpClient();
+    private SimpleDateFormat dfmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
     private String discordWebhookURL = null;
     private NamedTextColor onEnableColor = NamedTextColor.GRAY;
@@ -71,6 +75,7 @@ public final class Disannouncer extends JavaPlugin implements CommandExecutor
             json.append("`title`:`Service Announcement`,");
             json.append(String.format("`description`:`%s`,", message));
             json.append(String.format("`color`:%d,", color.value()));
+            json.append(String.format("`timestamp`:`%s`,", dfmt.format(Date.from(Instant.now()))));
             json.append(String.format("`author`:{`name`:`%s`,`icon_url`:`%s`}", author, getHeadURL(author)));
             json.append("}]");
             json.append("}");
@@ -114,13 +119,13 @@ public final class Disannouncer extends JavaPlugin implements CommandExecutor
     {
         reloadConfig();
         Objects.requireNonNull(getCommand("broadcast")).setExecutor(this);
-        doBroadcast("Server started", "console", onEnableColor);
+        doBroadcast("Server started", "CONSOLE", onEnableColor);
     }
 
     @Override
     public void onDisable()
     {
-        doBroadcast("Server stopped", "console", onDisableColor);
+        doBroadcast("Server stopped", "CONSOLE", onDisableColor);
     }
 
     @Override
