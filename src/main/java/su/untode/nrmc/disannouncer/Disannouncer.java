@@ -1,4 +1,4 @@
-package su.gprb.nrmc.disannouncer;
+package su.untode.nrmc.disannouncer;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -34,22 +34,22 @@ public final class Disannouncer extends JavaPlugin implements CommandExecutor
     private NamedTextColor getColor(@NotNull String value)
     {
         return switch (value.toLowerCase()) {
-            case "black" -> NamedTextColor.BLACK;
-            case "dark_blue" -> NamedTextColor.DARK_BLUE;
-            case "dark_green" -> NamedTextColor.DARK_GREEN;
-            case "dark_aqua" -> NamedTextColor.DARK_AQUA;
-            case "dark_red" -> NamedTextColor.DARK_RED;
-            case "dark_purple" -> NamedTextColor.DARK_PURPLE;
-            case "gold" -> NamedTextColor.GOLD;
-            case "dark_gray" -> NamedTextColor.DARK_GRAY;
-            case "blue" -> NamedTextColor.BLUE;
-            case "green" -> NamedTextColor.GREEN;
-            case "aqua" -> NamedTextColor.AQUA;
-            case "red" -> NamedTextColor.RED;
+            case "black"        -> NamedTextColor.BLACK;
+            case "dark_blue"    -> NamedTextColor.DARK_BLUE;
+            case "dark_green"   -> NamedTextColor.DARK_GREEN;
+            case "dark_aqua"    -> NamedTextColor.DARK_AQUA;
+            case "dark_red"     -> NamedTextColor.DARK_RED;
+            case "dark_purple"  -> NamedTextColor.DARK_PURPLE;
+            case "gold"         -> NamedTextColor.GOLD;
+            case "dark_gray"    -> NamedTextColor.DARK_GRAY;
+            case "blue"         -> NamedTextColor.BLUE;
+            case "green"        -> NamedTextColor.GREEN;
+            case "aqua"         -> NamedTextColor.AQUA;
+            case "red"          -> NamedTextColor.RED;
             case "light_purple" -> NamedTextColor.LIGHT_PURPLE;
-            case "yellow" -> NamedTextColor.YELLOW;
-            case "white" -> NamedTextColor.WHITE;
-            default -> NamedTextColor.GRAY;
+            case "yellow"       -> NamedTextColor.YELLOW;
+            case "white"        -> NamedTextColor.WHITE;
+            default             -> NamedTextColor.GRAY;
         };
     }
 

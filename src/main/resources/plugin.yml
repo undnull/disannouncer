@@ -1,6 +1,6 @@
-main: su.gprb.nrmc.disannouncer.Disannouncer
+main: su.untode.nrmc.disannouncer.Disannouncer
 name: Disannouncer
-version: 1.1.2
+version: 1.1.3
 description: The simplest PSA plugin out there
 api-version: 1.19
 load: STARTUP
